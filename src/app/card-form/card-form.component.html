@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="inner">
+    <div class="card-wrapper">
+      <app-card [fields]="getValues()" />
+    </div>
+
+    <div class="card-form-wrapper">
+      <form
+        [formGroup]="cardForm"
+        (ngSubmit)="handleSubmit($event)"
+        class="card-form"
+      >
+        <app-input label="Name" [control]="cardForm.controls.name" />
+        <app-input
+          label="Card Number"
+          [control]="cardForm.controls.cardNumber"
+          maskPattern="0000 0000 0000 0000"
+        />
+        <app-input
+          label="Expiration"
+          [control]="cardForm.controls.expiration"
+          size="half"
+        />
+        <app-input
+          label="Security Code"
+          [control]="cardForm.controls.securityCode"
+          size="half"
+          maskPattern="000"
+        />
+
+        <div class="form-actions">
+          <button
+            type="button"
+            mat-stroked-button
+            color="primary"
+            (click)="handleReset()"
+          >
+            Reset
+          </button>
+          <button
+            type="submit"
+            mat-flat-button
+            color="primary"
+            type="submit"
+            [disabled]="cardForm.invalid"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

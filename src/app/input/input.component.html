@@ -1,0 +1,34 @@
+<div class="input-wrapper" [ngClass]="getWidth()">
+  <mat-form-field appearance="outline">
+    <mat-label *ngIf="label">{{ label }}</mat-label>
+    <input
+      [formControl]="control"
+      matInput
+      placeholder="Enter your name "
+      [errorStateMatcher]="matcher"
+      [mask]="maskPattern"
+    />
+    <mat-error *ngIf="control.dirty && control.touched && control.errors">
+      <ng-container *ngIf="control.errors['required']">
+        Field is <strong>required</strong>
+      </ng-container>
+
+      <ng-container *ngIf="control.errors['minlength']">
+        Field has to be at least
+        <strong
+          >{{ control.errors["minlength"].requiredLength }} characters</strong
+        >
+      </ng-container>
+      <ng-container *ngIf="control.errors['maxlength']">
+        Field cannot be longer than
+        <strong
+          >{{ control.errors["maxlength"].requiredLength }} characters</strong
+        >
+      </ng-container>
+      <ng-container *ngIf="control.errors['pattern']">
+        Field has
+        <strong>invalid format</strong>
+      </ng-container>
+    </mat-error>
+  </mat-form-field>
+</div>
